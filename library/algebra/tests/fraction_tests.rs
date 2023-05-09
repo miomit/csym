@@ -19,6 +19,36 @@ fn to_cut_tests() {
 }
 
 #[test]
+fn pow_tests() {
+    let mut a = Fraction::new_num(2);
+
+    a.pow(3);
+
+    assert_eq!(a, Fraction::new_num(8));
+
+    let mut a = Fraction::new(2, 3);
+
+    a.pow(2);
+    
+    assert_eq!(a, Fraction::new(4, 9));
+}
+
+#[test]
+fn to_pow_tests() {
+    let a = Fraction::new_num(2);
+    let b = a.to_pow(3);
+    
+    assert_eq!(a, Fraction::new_num(2));
+    assert_eq!(b, Fraction::new_num(8));
+
+    let a = Fraction::new(2, 3);
+    let b = a.to_pow(2);
+    
+    assert_eq!(a, Fraction::new(2, 3));
+    assert_eq!(b, Fraction::new(4, 9));
+}
+
+#[test]
 fn mul_tests() {
     let a = Fraction::new_num(2);
     let b = Fraction::new_num(3);
