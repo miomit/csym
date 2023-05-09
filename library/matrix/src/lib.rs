@@ -1,7 +1,8 @@
 use algebra::fraction::Fraction;
-use std::fmt;
+use std::{fmt, ops::Mul};
 
 pub mod determinant;
+pub mod inverse;
 
 pub struct Matrix
 {
@@ -170,5 +171,46 @@ impl fmt::Debug for Matrix {
 impl Clone for Matrix {
     fn clone(&self) -> Self {
         Self::new(*self.elems.clone())
+    }
+}
+
+impl Mul for Matrix {
+    type Output = Self;
+
+    fn mul(self, other: Self) -> Self {
+        let mut res = Matrix::new_zero(self.get_row(), other.get_col());
+
+        for row in 0..res.get_row() {
+            for col in 0..res.get_col() {
+                for s in 0..self.get_col() {
+                    res.set_elem(row, col, 
+                        self.get_elem(row, s) * other.get_elem(s, col) + res.get_elem(row, col)
+                    );
+                }
+            }
+        }
+
+        res
+    }
+}
+
+impl PartialEq for Matrix {
+    fn eq(&self, other: &Self) -> bool {
+        if self.get_row() != other.get_row() || self.get_col() != other.get_col() {
+            false
+        }
+        else {
+            for row in 0..self.get_row() {
+                for col in 0..self.get_col() {
+                    if self.get_elem(row, col) != other.get_elem(row, col)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            true
+        }
+
     }
 }
