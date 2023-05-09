@@ -59,6 +59,17 @@ impl Fraction{
         Self::new(*self.numerator * -1_i64, *self.denominator)
     }
 
+    pub fn pow(&mut self, exp: u32) -> &mut Self{
+        *self.numerator   = self.numerator.pow(exp);
+        *self.denominator = self.denominator.pow(exp);
+        
+        self.cut()
+    }
+
+    pub fn to_pow(&self, exp: u32) -> Self {
+        Fraction::new(self.get_numerator().pow(exp), self.get_denominator().pow(exp))
+    }
+
     pub fn inv(&mut self) -> &mut Self {
         (*self.numerator, *self.denominator) = (self.get_denominator(), self.get_numerator());
 
