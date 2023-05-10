@@ -1,6 +1,8 @@
 {
     "rust-analyzer.linkedProjects": [
         "./library/matrix/Cargo.toml",
-        "./Cargo.toml"
+        "./Cargo.toml",
+        "./library/algebra/Cargo.toml",
+        "./library/discrete/Cargo.toml"
     ]
 }
