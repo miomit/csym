@@ -53,6 +53,18 @@ impl Matrix {
         *self.col
     }
 
+    pub fn get_minor(&self, indexes: Vec<u8>) -> Self {
+        let mut res = Self::new_identity(indexes.len() as u8);
+
+        for row in (0..indexes.len() as u8){
+            for col in (0..indexes.len() as u8){
+                res.set_elem(row, col, self.get_elem(indexes[row as usize], indexes[col as usize]));
+            }
+        }
+
+        res
+    }
+
     pub fn get_elem(&self, row: u8, col: u8) -> Fraction {
         self.elems[row as usize][col as usize].clone()
     }
