@@ -45,6 +45,53 @@ impl Polynomial {
         res
     }
 
+    pub fn solve(&self) -> Vec<Fraction>{
+        let mut res = Vec::new();
+
+        let mut self_short = Polynomial::new(self.get_coefficients().clone());
+
+        for i in (1..self.len()).rev() {
+            if self_short.get_coefficient(i).is_zero() {
+                res.push(Fraction::default());
+            }
+            else{
+                let mut k = self_short.get_coefficient(i).get_result();
+
+                if k < 0_f64 { k *= -1_f64;}
+
+                let mut is_found_root = false;
+
+                for j in 1..=( (k + 1_f64) as i64){
+
+                    for num in [Fraction::new_num(j), Fraction::new_num(-j)] {
+
+                        let gorner_pol = self_short.gorner(num.clone());
+                        
+                        if gorner_pol.get_coefficient(self_short.len() - 1).is_zero() {
+                            res.push(num);
+                            is_found_root = true;
+
+                            self_short = Polynomial::new(gorner_pol.get_coefficients()[0..i].to_vec());
+
+                            break;
+                        }
+
+                    }
+
+                    if is_found_root {
+                        break;
+                    }
+                }
+
+                if !is_found_root {
+                    panic!("is_found_root = false :(");
+                }
+            }
+        }
+
+        res
+    }
+
     pub fn gorner(&self, coefficient: Fraction) -> Self{
         let mut res = vec![Fraction::default(); self.len()];
 
