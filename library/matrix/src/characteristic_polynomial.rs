@@ -20,7 +20,6 @@ pub fn invariant(matrix: Matrix) -> Polynomial {
         } 
 
         res.set_elem( i, sum.clone());
-        println!("sum = {:?}", sum);
     }
 
     if res.len() % 2 == 0{
@@ -29,6 +28,5 @@ pub fn invariant(matrix: Matrix) -> Polynomial {
 
     res.set_elem(res.len() - 1, matrix.det());
 
-    
     res
 }
