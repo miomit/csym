@@ -12,3 +12,6 @@ path = "./library/algebra"
 
 [dependencies.matrix]
 path = "./library/matrix"
+
+[dependencies.discrete]
+path = "./library/discrete"
