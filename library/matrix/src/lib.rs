@@ -4,6 +4,7 @@ use std::{fmt, ops::Mul};
 pub mod determinant;
 pub mod inverse;
 pub mod fundamental_system_solution;
+pub mod characteristic_polynomial;
 
 pub struct Matrix
 {
