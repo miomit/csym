@@ -25,6 +25,11 @@ impl Polynomial {
         *self.coefficients.clone()
     }
 
+    pub fn set_elem(&mut self, index: usize, val: Fraction) -> &mut Self {
+        self.coefficients[index] = val;
+        self
+    }
+    
     pub fn calculate(&self, coefficient: Fraction) -> Fraction {
         let mut res = Fraction::default();
 
