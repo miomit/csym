@@ -2,3 +2,6 @@
 /library/algebra/target
 /library/matrix/target
 /library/discrete/target
+
+/.vscode
+/.idea
